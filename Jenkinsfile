@@ -7,7 +7,6 @@ pipeline {
                 checkout scm
                 echo "Hello world"
                 sh 'echo "This is a sample file for the artifact?" > sample.txt'
-                sh 'zip foo-bar.zip sample.txt'
             }
         }
 
