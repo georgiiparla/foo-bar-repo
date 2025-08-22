@@ -35,7 +35,6 @@ def publish(Map config) {
             """
         }
         
-        // --- 4. Clean up the local zip file ---
         echo "Cleaning up local file: ${zipFile}"
         sh "rm -f ${zipFile}"
     }
