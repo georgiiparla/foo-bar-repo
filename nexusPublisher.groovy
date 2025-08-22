@@ -1,12 +1,10 @@
 def publish(Map config) {
     script {
-        // --- 1. Get Parameters from the function call ---
         def zipFile = config.zipFile
         def repo = config.repoName
         def nexusRepoUrl = "http://172.20.10.25:8081/repository/${repo}"
         def credentialsId = config.credentialsId
 
-        // --- 2. Determine Paths & Version (Logic is now inside the function) ---
         def rawBranch = env.GIT_BRANCH
         def currentBranch = rawBranch.replaceFirst('origin/', '')
         def nexusPath
@@ -21,7 +19,6 @@ def publish(Map config) {
         def versionedUrl = "${nexusRepoUrl}/${nexusPath}/${versionIdentifier}/${zipFile}"
         def latestUrl = "${nexusRepoUrl}/${nexusPath}/latest/${zipFile}"
 
-        // --- 3. Upload to Nexus ---
         withCredentials([usernamePassword(credentialsId: credentialsId, usernameVariable: 'NEXUS_USER', passwordVariable: 'NEXUS_PASS')]) {
             echo "Uploading VERSIONED artifact to: ${versionedUrl}"
             sh """
