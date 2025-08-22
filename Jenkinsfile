@@ -22,7 +22,7 @@ pipeline {
                 script {
                     nexus.download(
                         zipFile: 'base_bin.zip',
-                        nexusPath: 'BASE/bov/latest',
+                        nexusPath: 'BASE/main/latest',
                         credentialsId: '7d196d2f-f3c1-4803-bde9-2d17d18776b3'
                     )
                 }
