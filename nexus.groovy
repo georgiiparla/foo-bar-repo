@@ -19,7 +19,6 @@ def publish(Map config) {
             sh "curl -v -f -u \"\$NEXUS_USER:\$NEXUS_PASS\" --upload-file ${zipFile} \"${latestUrl}\""
         }
         
-        sh "rm -f ${zipFile}"
     }
 }
 
