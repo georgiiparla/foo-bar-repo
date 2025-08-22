@@ -22,7 +22,7 @@ pipeline {
                 script {
                     nexus.download(
                         zipFile: 'base_bin.zip',
-                        nexusPath: 'katana/win/12.0/feature/latest',
+                        nexusPath: 'BASE/win/12.0/feature/latest',
                         credentialsId: '7d196d2f-f3c1-4803-bde9-2d17d18776b3'
                     )
 
@@ -30,7 +30,7 @@ pipeline {
 
                     nexus.download(
                         zipFile: 'base_bin.zip',
-                        nexusPath: 'katana/win/11.0/main/latest',
+                        nexusPath: 'BASE/win/11.0/main/latest',
                         credentialsId: '7d196d2f-f3c1-4803-bde9-2d17d18776b3'
                     )
                 }
@@ -47,7 +47,7 @@ pipeline {
                     
                     nexus.publish(
                         zipFile: 'foo-bar.zip',
-                        nexusPath: 'katana/main',
+                        nexusPath: 'katana/win-distro/11.0/main',
                         credentialsId: '7d196d2f-f3c1-4803-bde9-2d17d18776b3'
                     )
                 }
