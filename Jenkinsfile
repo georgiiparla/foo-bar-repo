@@ -26,7 +26,7 @@ pipeline {
                     sh "mkdir -p Bin"
                     sh "unzip -o base_bin.zip -d Bin/"
                     sh 'zip foo-bar.zip sample.txt Bin/'
-                    publisher.publish(zipFile: 'foo-bar.zip', repoName: 'main/latest', credentialsId: '7d196d2f-f3c1-4803-bde9-2d17d18776b3')
+                    publisher.publish(zipFile: 'foo-bar.zip', repoName: 'katana/main/latest', credentialsId: '7d196d2f-f3c1-4803-bde9-2d17d18776b3')
                 }
             }
         }
