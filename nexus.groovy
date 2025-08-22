@@ -4,7 +4,7 @@ def publish(Map config) {
         def nexusPath = config.nexusPath        // e.g., 'BASE/my-project/main'
         def credentialsId = config.credentialsId
 
-        def nexusBaseUrl = "http://bo.rs2.com:8081"
+        def nexusBaseUrl = "http://172.20.10.25:8081"
 
         def versionIdentifier = sh(script: 'git rev-parse --short HEAD', returnStdout: true).trim()
         
