@@ -4,6 +4,7 @@ pipeline {
     stages {
         stage('first stage') {
             steps {
+                cleanWs()
                 checkout scm
                 echo "Hello world"
                 sh 'echo "This is a sample file for the artifact?" > sample.txt'
