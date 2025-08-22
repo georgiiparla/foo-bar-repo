@@ -29,7 +29,7 @@ def download(Map config) {
         def nexusPath = config.nexusPath
         def credentialsId = config.credentialsId
         
-        def nexusBaseUrl = "http://bo.rs2.com:8081"
+        def nexusBaseUrl = "http://172.20.10.25:8081"
 
         def fullDownloadUrl = "${nexusBaseUrl}/repository/${nexusPath}/${zipFile}"
         
