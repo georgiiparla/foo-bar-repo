@@ -48,7 +48,7 @@ def download(Map config) {
     script {
         def zipFile = config.zipFile
         def repo = config.repoName
-        def nexusRepoUrl = "http://172.20.10.25:8081/repository/${repo}"
+        def nexusRepoUrl = "http://172.20.10.25:8081/repository/${repo}/${zipFile}"
         def credentialsId = config.credentialsId
 
         withCredentials([usernamePassword(credentialsId: credentialsId, usernameVariable: 'NEXUS_USER', passwordVariable: 'NEXUS_PASS')]) {
