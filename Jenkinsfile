@@ -31,5 +31,5 @@ pipeline {
                 }
             }
         }
-    } // ★ FIX: And close it here
+    }
 }
