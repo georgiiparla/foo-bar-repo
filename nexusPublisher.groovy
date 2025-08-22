@@ -47,7 +47,7 @@ def publish(Map config) {
 def download(Map config) {
     script {
         def zipFile = config.zipFile
-        def repo = config.repoName
+        def repo = config.repoPath
         def nexusRepoUrl = "http://172.20.10.25:8081/repository/${repo}/${zipFile}"
         def credentialsId = config.credentialsId
 
@@ -59,5 +59,4 @@ def download(Map config) {
     }
 }
 
-// This line is essential for the 'load' step to work
 return this
