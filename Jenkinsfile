@@ -23,7 +23,7 @@ pipeline {
         stage('last stage') {
             steps {
                 script {
-                    def publisher = load 'nexusPublisher.groovy'
+                    def publisher = load 'nexus.groovy'
                     sh "mkdir -p Bin"
                     sh "unzip -o base_bin.zip -d Bin/"
                     sh "ls -la"
