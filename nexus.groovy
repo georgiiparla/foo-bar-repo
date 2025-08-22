@@ -49,7 +49,7 @@ def download(Map config) {
 
         withCredentials([usernamePassword(credentialsId: credentialsId, usernameVariable: 'NEXUS_USER', passwordVariable: 'NEXUS_PASS')]) {
             sh """
-                curl -f -u "\$NEXUS_USER:\$NEXUS_PASS" -o "${zipFile}" "${nexusRepoUrl}"
+                curl -v -f -u "\$NEXUS_USER:\$NEXUS_PASS" -o "${zipFile}" "${nexusRepoUrl}"
             """
         }
     }
