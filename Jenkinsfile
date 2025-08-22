@@ -9,7 +9,7 @@ pipeline {
                 cleanWs()
                 checkout scm
                 echo "Hello world"
-                sh 'echo "This is a sample file for the artifact BOV" > sample.txt'
+                sh 'echo "This is a sample file for the artifact MAIN" > sample.txt'
                 
                 script {
                     nexus = load 'nexus.groovy'
@@ -17,10 +17,14 @@ pipeline {
             }
         }
 
-        stage('upload to nexus') {
+        stage('download from nexus') {
             steps {
                 script {
-                    nexus.download(zipFile: 'base_bin.zip', repoPath: 'BASE/main/latest', credentialsId: '7d196d2f-f3c1-4803-bde9-2d17d18776b3')
+                    nexus.download(
+                        zipFile: 'base_bin.zip',
+                        nexusPath: 'BASE/bov/latest',
+                        credentialsId: '7d196d2f-f3c1-4803-bde9-2d17d18776b3'
+                    )
                 }
             }
         }
@@ -32,7 +36,12 @@ pipeline {
                     sh "unzip -o base_bin.zip -d Bin/"
                     sh "ls -la"
                     sh 'zip -r foo-bar.zip sample.txt Bin/'
-                    nexus.publish(zipFile: 'foo-bar.zip', repoName: 'katana', credentialsId: '7d196d2f-f3c1-4803-bde9-2d17d18776b3')
+                    
+                    nexus.publish(
+                        zipFile: 'foo-bar.zip',
+                        nexusPath: 'katana/main',
+                        credentialsId: '7d196d2f-f3c1-4803-bde9-2d17d18776b3'
+                    )
                 }
             }
         }
