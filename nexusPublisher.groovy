@@ -2,7 +2,8 @@ def publish(Map config) {
     script {
         // --- 1. Get Parameters from the function call ---
         def zipFile = config.zipFile
-        def nexusRepoUrl = config.nexusRepoUrl
+        def repo = config.repoName
+        def nexusRepoUrl = "http://172.20.10.25:8081/repository/${repo}"
         def credentialsId = config.credentialsId
 
         // --- 2. Determine Paths & Version (Logic is now inside the function) ---
@@ -40,6 +41,21 @@ def publish(Map config) {
         // --- 4. Clean up the local zip file ---
         echo "Cleaning up local file: ${zipFile}"
         sh "rm -f ${zipFile}"
+    }
+}
+
+def download(Map config) {
+    script {
+        def zipFile = config.zipFile
+        def repo = config.repoName
+        def nexusRepoUrl = "http://172.20.10.25:8081/repository/${repo}"
+        def credentialsId = config.credentialsId
+
+        withCredentials([usernamePassword(credentialsId: credentialsId, usernameVariable: 'NEXUS_USER', passwordVariable: 'NEXUS_PASS')]) {
+            sh """
+                curl -f -u "\$NEXUS_USER:\$NEXUS_PASS" -o "${zipFile}" "${nexusRepoUrl}"
+            """
+        }
     }
 }
 
