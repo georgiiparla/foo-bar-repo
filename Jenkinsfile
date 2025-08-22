@@ -22,7 +22,15 @@ pipeline {
                 script {
                     nexus.download(
                         zipFile: 'base_bin.zip',
-                        nexusPath: 'BASE/CS-Katana-lin/main/latest',
+                        nexusPath: 'katana/win/12.0/feature/latest',
+                        credentialsId: '7d196d2f-f3c1-4803-bde9-2d17d18776b3'
+                    )
+
+                    sh "rm -f base_bin.zip"
+
+                    nexus.download(
+                        zipFile: 'base_bin.zip',
+                        nexusPath: 'katana/win/11.0/main/latest',
                         credentialsId: '7d196d2f-f3c1-4803-bde9-2d17d18776b3'
                     )
                 }
